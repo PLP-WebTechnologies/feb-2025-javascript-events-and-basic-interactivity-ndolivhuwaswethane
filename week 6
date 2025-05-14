@@ -1,0 +1,96 @@
+<button id="clickBtn">Click Me</button>
+<p id="hoverText">Hover over me!</p>
+<input type="text" id="keypressInput" placeholder="Type something">
+<button id="secretAction">Double-click me 🤫</button>
+
+<script>
+    // Button Click Event
+    document.getElementById("clickBtn").addEventListener("click", function() {
+        alert("Button clicked!");
+    });
+
+    // Hover Effect
+    document.getElementById("hoverText").addEventListener("mouseover", function() {
+        this.style.color = "red";
+    });
+
+    // Keypress Detection
+    document.getElementById("keypressInput").addEventListener("keydown", function(event) {
+        console.log("Key pressed: " + event.key);
+    });
+
+    // Secret Action (Double Click)
+    document.getElementById("secretAction").addEventListener("dblclick", function() {
+        alert("You discovered the secret action! 🎉");
+    });
+</script>
+<button id="changeBtn">Click to Change</button>
+
+<script>
+    document.getElementById("changeBtn").addEventListener("click", function() {
+        this.textContent = "Changed!";
+        this.style.backgroundColor = "green";
+    });
+</script>
+<img id="galleryImage" src="image1.jpg" width="300px">
+<button id="nextBtn">Next Image</button>
+
+<script>
+    let images = ["image1.jpg", "image2.jpg", "image3.jpg"];
+    let index = 0;
+
+    document.getElementById("nextBtn").addEventListener("click", function() {
+        index = (index + 1) % images.length;
+        document.getElementById("galleryImage").src = images[index];
+    });
+</script>
+<button class="tabBtn" data-content="tab1">Tab 1</button>
+<button class="tabBtn" data-content="tab2">Tab 2</button>
+
+<div id="tab1" class="tabContent">This is content for Tab 1.</div>
+<div id="tab2" class="tabContent" style="display: none;">This is content for Tab 2.</div>
+
+<script>
+    document.querySelectorAll(".tabBtn").forEach(button => {
+        button.addEventListener("click", function() {
+            document.querySelectorAll(".tabContent").forEach(content => content.style.display = "none");
+            document.getElementById(this.dataset.content).style.display = "block";
+        });
+    });
+</script>
+<form id="myForm">
+    <input type="email" id="email" placeholder="Enter Email" required>
+    <input type="password" id="password" placeholder="Enter Password (min 8 characters)" required>
+    <button type="submit">Submit</button>
+    <p id="feedback" style="color: red;"></p>
+</form>
+
+<script>
+    document.getElementById("myForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+        let feedback = document.getElementById("feedback");
+
+        if (!email.includes("@")) {
+            feedback.textContent = "Invalid email format.";
+            return;
+        }
+
+        if (password.length < 8) {
+            feedback.textContent = "Password must be at least 8 characters.";
+            return;
+        }
+
+        feedback.style.color = "green";
+        feedback.textContent = "Form submitted successfully!";
+    });
+</script>
+<input type="text" id="liveInput" placeholder="Start typing...">
+<p id="liveFeedback"></p>
+
+<script>
+    document.getElementById("liveInput").addEventListener("input", function() {
+        document.getElementById("liveFeedback").textContent = "You typed: " + this.value;
+    });
+</script>
